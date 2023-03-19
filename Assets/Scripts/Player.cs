@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
         if (isGrounded && isJumping)
         {
             isJumping = false;
+            animator.SetBool("isLanded", true);
             jumpsLeft = maxJumps;
         }
 
@@ -76,6 +77,8 @@ public class Player : MonoBehaviour
         jumpsLeft--;
         isJumping = true;
         isGrounded = false;
+        animator.SetTrigger("isJump");
+        animator.SetBool("isLanded", false) ;
         physicShape.velocity = (new Vector3(physicShape.velocity.x, 1f * jumpPower, 0));
 
     }

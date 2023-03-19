@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 615594dcc4a073941bad4e28456a3b87
+guid: 8940710933ad5b047b0606d31fa0a8d5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,112 +139,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: IMG_0931_0
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 92
-        width: 292
-        height: 312
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ceb4928e6e7d6de4496789307bd16778
-      internalID: 1412414905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IMG_0931_1
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 96
-        width: 312
-        height: 304
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69c5097c490ca1040b11187706664c10
-      internalID: -2134588950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IMG_0931_2
-      rect:
-        serializedVersion: 2
-        x: 740
-        y: 96
-        width: 324
-        height: 304
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13782c31ca78d344bb9483004afbbb5d
-      internalID: -955318710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IMG_0931_3
-      rect:
-        serializedVersion: 2
-        x: 1100
-        y: 104
-        width: 344
-        height: 296
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c50785e9f68462f4aa8070df81f0af57
-      internalID: -1265230095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IMG_0931_4
-      rect:
-        serializedVersion: 2
-        x: 1456
-        y: 100
-        width: 384
-        height: 308
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43cd35bb6ee26ad4f859eaf05ac487dd
-      internalID: 297027572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -255,12 +150,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      IMG_0931_0: 1412414905
-      IMG_0931_1: -2134588950
-      IMG_0931_2: -955318710
-      IMG_0931_3: -1265230095
-      IMG_0931_4: 297027572
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
