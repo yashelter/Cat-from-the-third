@@ -1,20 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleManager : MonoBehaviour
 {
-    private GameObject[] puzzle;
-    public static bool isCorrect;
+    [SerializeField] private GameObject[] puzzle;
+    [SerializeField] private GameObject PipesHolder;
+    
+    [SerializeField] private int totalPipes = 0;
+
+    int correctPipes = 0;
+
 
 
     private void Start()
     {
-        puzzle = GameObject.FindGameObjectsWithTag("Puzzle");
-        isCorrect = false;
+        totalPipes = PipesHolder.transform.childCount;
+
+        puzzle = new GameObject[totalPipes];
+
+        for (int i = 0; i < puzzle.Length; i++)
+        {
+            puzzle[i] = PipesHolder.transform.GetChild(i).gameObject;
+        }
+
+
     }
-    private void Update()
+    
+    public void CorrectMove()
     {
+        correctPipes++;
+
+        if (correctPipes == totalPipes)
+        {
+            Debug.Log("YOU WON");
+        }
+    }
+    public void WrongMove()
+    {
+        correctPipes--;
+    }
+}
+/*
         if (PuzzleRotate.isMouse)
         {
             bool AllTrue = true;
@@ -30,9 +58,9 @@ public class PuzzleManager : MonoBehaviour
             {
                 isCorrect = true;
                 Debug.Log("YOU WON");
-
+                
             }
-            PuzzleRotate.isMouse = false; 
+            PuzzleRotate.isMouse = false;
         } 
 
 
@@ -40,3 +68,4 @@ public class PuzzleManager : MonoBehaviour
         
     }
 }
+*/
