@@ -10,13 +10,13 @@ public class PuzzleManager : MonoBehaviour
     
     [SerializeField] private int totalPipes = 0;
 
-    int correctPipes = 0;
-
+    public static int correctPipes = 0;
+    
 
 
     private void Start()
     {
-        totalPipes = PipesHolder.transform.childCount;
+
 
         puzzle = new GameObject[totalPipes];
 
@@ -25,12 +25,15 @@ public class PuzzleManager : MonoBehaviour
             puzzle[i] = PipesHolder.transform.GetChild(i).gameObject;
         }
 
-
+        
     }
     
+
+
+
     public void CorrectMove()
     {
-        correctPipes++;
+        correctPipes += 1;
 
         if (correctPipes == totalPipes)
         {
@@ -39,33 +42,7 @@ public class PuzzleManager : MonoBehaviour
     }
     public void WrongMove()
     {
-        correctPipes--;
+        correctPipes -= 1;
+        Debug.Log("Wrong MOVE");
     }
 }
-/*
-        if (PuzzleRotate.isMouse)
-        {
-            bool AllTrue = true;
-            foreach (var item in puzzle)
-            {
-                if (item.transform.rotation.z < -0.01 || item.transform.rotation.z > 0.01)
-                {
-                    AllTrue = false;
-                    break;
-                }
-            }
-            if (AllTrue)
-            {
-                isCorrect = true;
-                Debug.Log("YOU WON");
-                
-            }
-            PuzzleRotate.isMouse = false;
-        } 
-
-
-        
-        
-    }
-}
-*/
