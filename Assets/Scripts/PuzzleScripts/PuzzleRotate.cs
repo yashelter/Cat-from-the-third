@@ -5,49 +5,81 @@ using UnityEngine;
 public class PuzzleRotate : MonoBehaviour
 {
     [SerializeField] private bool isPlaced;
+    public float currentDegrees = 0f;
+    public bool isPlaced;
 
     
     
     public float[] correctRotation;
+    private float[] rotate = { 0, 90, 180, 270 };
+    private PuzzleManager puzzleManager;
 
     
     int PossibleRots = 1;
-    public int sumCorrect = 0;
 
-    //PuzzleManager puzzleManager;
+    PuzzleManager puzzleManager;
 
-    //private void Awake()
-    //{
-    //    puzzleManager = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>();
-    //}
+
+
+
+
+
+
+    private void Awake()
+    {
+        puzzleManager = GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>();
+    }
 
     private void Start()
     {
-        float[] rotate = { 0, 90, 180, 270 };
+         float[] rotate = { 0, 90, 180, 270 };
+        int Rand = Random.Range(0, rotate.Length); // надо учесть что пазл может стать решённым сразу
 
-        PossibleRots = correctRotation.Length;
+    PossibleRots = correctRotation.Length;
         int Rand = Random.Range(0, rotate.Length);
-        //transform.Rotate(0, 0, rotate[Rand]);// rotate.Length)]);
+        transform.Rotate(0, 0, rotate[Random.Range(0, rotate.Length)]);
+
+
+
         transform.eulerAngles = new Vector3(0,0, rotate[Rand]);
 
 
-        if (PossibleRots > 1)
+        if (PossibleRots == 2)
         {
-            if (transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1]) // || transform.eulerAngles.z == -correctRotation[1])
+            if (transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1] || transform.eulerAngles.z == -correctRotation[1])
             {
                 isPlaced = true;
-                sumCorrect++;
-                //puzzleManager.CorrectMove();
+                puzzleManager.CorrectMove();
             }
-        } else 
+        } else if (PossibleRots == 1) 
         {
             if (transform.eulerAngles.z == correctRotation[0])
             {
                 isPlaced = true;
-                sumCorrect++;
-                //puzzleManager.CorrectMove();
+                puzzleManager.CorrectMove();
             }
         }
+
+
+        currentDegrees = rotate[Rand];
+        isPlaced = CheckTile();
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
@@ -55,33 +87,62 @@ public class PuzzleRotate : MonoBehaviour
     {
         transform.Rotate(0, 0, 90);
 
-        if (PossibleRots == 2)
+        if (PossibleRots > 1)
+        currentDegrees = ((currentDegrees + 90) % 360);
+        isPlaced = CheckTile();
+        puzzleManager.CheckPuzzle();
+    }
+    private bool CheckTile()
+    {
+        for (int i = 0; i < correctRotation.Length; i++)
         {
-            if ((transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1] ) && isPlaced == false)
+            if ((transform.eulerAngles.z == correctRotation[0] || transform.eulerAngles.z == correctRotation[1] || transform.eulerAngles.z == -correctRotation[1]) && isPlaced == false)
+            if (currentDegrees == correctRotation[i])
             {
                 isPlaced = true;
-                sumCorrect++;
-                //puzzleManager.CorrectMove();
+                puzzleManager.CorrectMove();
             }
-            else 
+            else if (isPlaced == true)
             {
                 isPlaced = false;
-                //puzzleManager.WrongMove();
+                puzzleManager.WrongMove();
             }
-        } else 
+        } else if (PossibleRots == 1)
         {
             if (transform.eulerAngles.z == correctRotation[0] && isPlaced == false)
             {
                 isPlaced = true;
-                sumCorrect++;
-                //puzzleManager.CorrectMove();
+                puzzleManager.CorrectMove();
             }
-            else
+            else if (isPlaced == true)
             {
                 isPlaced = false;
-                //puzzleManager.WrongMove();
+                puzzleManager.WrongMove();
             }
+                return true;
+            }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         
+        return false;
     }
 }
