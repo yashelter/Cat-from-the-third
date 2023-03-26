@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzles: []
   allTiles: 6
-  solvedTiles: 6
+  solvedTiles: 0
 --- !u!4 &1920042372
 Transform:
   m_ObjectHideFlags: 0
