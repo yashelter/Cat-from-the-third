@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 99d83b99baa034f68b5763597ab45829, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fac204468c494f4b9948606003cf7b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -222,11 +222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faces:
-  - {fileID: 21300000, guid: 8e05a00075ddc459a9406c3d5fa2f941, type: 3}
-  - {fileID: 21300000, guid: 225a374d7890d4bad9f8d8f40650cc29, type: 3}
-  - {fileID: 21300000, guid: 9e1b738b4b1f74d00a7bb87fc7edb7ab, type: 3}
-  - {fileID: 21300000, guid: 2a693bee643ea41ecb4b9930450e15ab, type: 3}
-  back: {fileID: 21300000, guid: 99d83b99baa034f68b5763597ab45829, type: 3}
+  - {fileID: 21300000, guid: e53c01277f1fb48cebb1726234398a51, type: 3}
+  - {fileID: 21300000, guid: 27fc99e115c4b4adba60a16afd78782c, type: 3}
+  - {fileID: 21300000, guid: 68a7d053d1c5c4a25957f3b8149de8d0, type: 3}
+  - {fileID: 21300000, guid: 3fd17511df1e7484c9bf31c3ba5b9f9c, type: 3}
+  back: {fileID: 21300000, guid: 7fac204468c494f4b9948606003cf7b5, type: 3}
   faceIndex: 2
   matched: 0
 --- !u!58 &227060216
@@ -281,7 +281,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.5754717, g: 0.5495679, b: 0.5076095, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
