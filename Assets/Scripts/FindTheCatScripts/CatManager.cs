@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CatManager : MonoBehaviour
 {
+    public SpriteRenderer circle;
+    public Color color;
+
     [SerializeField] private CatController[] cats;
     private int allCats ;
     private int solved;
@@ -25,10 +28,11 @@ public class CatManager : MonoBehaviour
                 //Debug.Log("Another one");
             }
         }
-        
+        Debug.Log(solved);
         if (solved == allCats)
         {
             Debug.Log("You win");
+            circle.color = color;
         }
     }
 }
