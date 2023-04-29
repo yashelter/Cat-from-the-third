@@ -18,12 +18,13 @@ public class PickUpScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 
-        if (collision.CompareTag("Player")) // bad practive, it will be changed
+        if (collision.name == "CAT") // bad practive, it will be changed (comparing by tag)
         {
-            
-            inventoryManager.PutIntoEmpty(item);
+
             gameObject.SetActive(false);
+            inventoryManager.PutIntoEmpty(item, itemObj);
+            
+            
             Debug.Log("Put Item");
         }
     }

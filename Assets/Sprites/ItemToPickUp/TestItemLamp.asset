@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c048891b9ff9040b2300b4dac68a06, type: 3}
-  m_Name: TestItem
+  m_Name: TestItemLamp
   m_EditorClassIdentifier: 
-  Name: Lamp
-  Description: 'Can light around '
+  title: Lamp
+  description: Can ligth around
+  properties: Can used once
   icon: {fileID: 862738280, guid: a1987fc213c324e48bfd6f7416242fd0, type: 3}

@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
-    public string Name = "Name";
-    public string Description = "Description";
+    public string title = "Name";
+    public string description = "Description";
+    public string properties = "Properties";
     public Sprite icon = null;
 }
