@@ -15,4 +15,6 @@ MonoBehaviour:
   title: Lamp
   description: Can ligth around
   properties: Can used once
+  isStackable: 1
+  maxCount: 100
   icon: {fileID: 862738280, guid: a1987fc213c324e48bfd6f7416242fd0, type: 3}

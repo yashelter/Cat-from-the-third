@@ -48,7 +48,7 @@ public class InventoryManager : MonoBehaviour
 
                 if (i <= 4 && simpleSlots[i].simpleItem == null)
                 {
-                    simpleSlots[i].PutSimpleItem(item);
+                    simpleSlots[i].PutSimpleItem(item, obj);
                     Debug.Log("SimpleSlot " + i + " isnt empty");
                     return;
                 }

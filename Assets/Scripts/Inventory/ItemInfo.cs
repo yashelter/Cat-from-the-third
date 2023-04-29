@@ -25,6 +25,7 @@ public class ItemInfo : MonoBehaviour
     private Player player;
 
     private InventorySlot currSlot;
+    private SimpleSlot currSimpleSlot;
 
     private void Awake()
     {
@@ -78,15 +79,17 @@ public class ItemInfo : MonoBehaviour
         itemObject.transform.position = dropPos;
         
         currSlot.ClearSlot();
+        currSimpleSlot.ClearSimpleSlot();
         CloseInfo();
     }
 
-    public void OpenInfo(Item item, GameObject itemObject_, InventorySlot currSlot_)
+    public void OpenInfo(Item item, GameObject itemObject_, InventorySlot currSlot_, SimpleSlot simpleSlot_ = null)
     {
         ChangeInfo(item);
         infoItem = item;
         itemObject = itemObject_;
         currSlot = currSlot_;
+        currSimpleSlot = simpleSlot_;
         backGround.transform.localScale = Vector3.one;
     }
 
