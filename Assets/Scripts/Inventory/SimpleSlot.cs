@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SimpleSlot : MonoBehaviour // same with InventorySlot but for SimpleSlot
 {
     public Item simpleItem;
+    //public Item slotItem;
     public GameObject itemObject;
 
     private Image icon;
@@ -19,27 +20,71 @@ public class SimpleSlot : MonoBehaviour // same with InventorySlot but for Simpl
         countText = icon.transform.GetChild(0).GetComponent<Text>();
         icon.enabled = false;
         button = GetComponent<Button>();
+        
     }
 
-    public void PutSimpleItem(Item item, GameObject simpleObj) 
+    public void PutSimpleItem(Item item_, GameObject obj)
     {
-        icon.sprite = item.icon;
-        itemObject = simpleObj;
-        simpleItem = item;
-        icon.enabled = true;
-        if (item.isStackable)
+        if (item_.isStackable && item_.currCount > 1)
         {
+            //item_.countIncrease();
             countText.fontSize = 24;
-            countText.text = "1";
+            countText.color = Color.white;
+            countText.text = simpleItem.currCount.ToString();
         }
-        Debug.Log("Simple item was putten");
+        else if (item_.isStackable && item_.currCount == 1)
+        {
+            icon.sprite = item_.icon;
+            simpleItem = item_;
+            icon.enabled = true;
+            itemObject = obj;
+
+            //simpleItem.currCount++;
+            countText.fontSize = 24;
+            countText.color = Color.white;
+            countText.text = simpleItem.currCount.ToString();
+        }
+        else if (!item_.isStackable)
+        {
+            icon.sprite = item_.icon;
+            simpleItem = item_;
+            icon.enabled = true;
+            itemObject = obj;
+
+            Debug.Log("Simple item was putten");
+        }
     }
 
     public void ClearSimpleSlot()
     {
-        simpleItem = null;
-        itemObject = null;
-        icon.enabled = false;
-        countText.text = "";
+
+        if (simpleItem.isStackable && simpleItem.currCount == 0)
+        {
+            simpleItem = null;
+            itemObject = null;
+            icon.enabled = false;
+            //simpleItem.countDecrease();
+            countText.text = "";
+        }
+        else if (simpleItem.isStackable && simpleItem.currCount > 0)
+        {
+            //simpleItem.countDecrease();
+            if (simpleItem.currCount > 1)
+            {
+                countText.text = simpleItem.currCount.ToString();
+            } 
+            else
+            {
+                countText.text = "" + 1;
+            }
+            
+        }
+        else if (!simpleItem.isStackable)
+        {
+            simpleItem = null;
+            itemObject = null;
+            icon.enabled = false;
+        }
     }
+        
 }

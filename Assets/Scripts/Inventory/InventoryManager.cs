@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public Transform slotsParent;
     public Transform simpleParent; // for simpleSlots
 
-    private InventorySlot[] inventorySlots = new InventorySlot[20];
+    public InventorySlot[] inventorySlots = new InventorySlot[20];
     private SimpleSlot[] simpleSlots = new SimpleSlot[5];
     private bool isOpen = false;
 
@@ -22,11 +22,13 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < inventorySlots.Length; ++i)
         {
             inventorySlots[i] = slotsParent.GetChild(i).GetComponent<InventorySlot>();
+            //inventorySlots[i].slotItem.currCount = 0;
         }
 
         for (int i = 0; i < simpleSlots.Length; ++i)
         {
             simpleSlots[i] = simpleParent.GetChild(i).GetComponent<SimpleSlot>();
+            //simpleSlots[i].simpleItem.currCount = 0;
         }
 
     }
@@ -59,7 +61,28 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void PutIntoExist(Item item_, GameObject obj)
+    {
+        for (int i = 0; i < inventorySlots.Length; ++i)
+        {
+            if (inventorySlots[i].slotItem == item_)
+            {
+                inventorySlots[i].PutItem(item_, obj);
+                Debug.Log("Put Into Exist");
 
+                if (i <= 4 && simpleSlots[i].simpleItem == item_) 
+                {
+                    simpleSlots[i].PutSimpleItem(item_, obj);
+                    Debug.Log("SimpleSlot " + i + " isnt empty");
+                    return;
+                }
+
+                return;
+            } 
+        }
+
+        //PutIntoEmpty(item_, obj);
+    }
 
     public void Open() // turn on inventory and turn off inventoryOpen button
     {

@@ -13,6 +13,7 @@ public class ItemInfo : MonoBehaviour
     private TMP_Text title;
     private TMP_Text description;
     private TMP_Text properties;
+    private Text count;
 
     private Button exitButton;
     private Button dropButton;
@@ -20,7 +21,6 @@ public class ItemInfo : MonoBehaviour
 
     private GameObject itemObject; 
     
-
     private UseOfItems useOfItems;
     private Player player;
 
@@ -39,6 +39,7 @@ public class ItemInfo : MonoBehaviour
         exitButton = transform.GetChild(3).GetComponent<Button>();
         useButton = transform.GetChild(4).GetComponent<Button>();
         dropButton = transform.GetChild(5).GetComponent<Button>();
+        count = transform.GetChild(6).GetComponent<Text>();
 
         exitButton.onClick.AddListener(CloseInfo);
         useButton.onClick.AddListener(UseButton);
@@ -76,21 +77,32 @@ public class ItemInfo : MonoBehaviour
         }
         
         itemObject.SetActive(true);
-        itemObject.transform.position = dropPos;
+        Instantiate(itemObject, dropPos, Quaternion.identity);
+        itemObject.SetActive(false); // it may be a lot of clone
         
+
         currSlot.ClearSlot();
         currSimpleSlot.ClearSimpleSlot();
+
         CloseInfo();
     }
 
     public void OpenInfo(Item item, GameObject itemObject_, InventorySlot currSlot_, SimpleSlot simpleSlot_ = null)
     {
-        ChangeInfo(item);
-        infoItem = item;
-        itemObject = itemObject_;
-        currSlot = currSlot_;
-        currSimpleSlot = simpleSlot_;
-        backGround.transform.localScale = Vector3.one;
+        if (backGround.transform.localScale == Vector3.zero)
+        {
+            ChangeInfo(item);
+            count.text = "Count: " + item.currCount;
+            infoItem = item;
+            itemObject = itemObject_;
+            currSlot = currSlot_;
+            currSimpleSlot = simpleSlot_;
+            backGround.transform.localScale = Vector3.one;
+        } else
+        {
+            backGround.transform.localScale = Vector3.zero;
+        }
+        
     }
 
     public void CloseInfo()

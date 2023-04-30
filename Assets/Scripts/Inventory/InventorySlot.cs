@@ -10,7 +10,7 @@ public class InventorySlot : MonoBehaviour
     public Text countText;
     public SimpleSlot simpleSlot;
 
-    public int countItems = 0;
+
     private Image icon;
     private Button button;
     private ItemInfo inf;
@@ -33,18 +33,33 @@ public class InventorySlot : MonoBehaviour
         button.onClick.AddListener(ShowInfo);
     }
 
-    public void PutItem(Item item, GameObject obj)
+    public void PutItem(Item item_, GameObject obj)
     {
-        icon.sprite = item.icon;
-        slotItem = item;
-        icon.enabled = true;
-        itemObject = obj;
-        if (item.isStackable)
+        if (item_.isStackable && item_.currCount > 0)
         {
-            countItems++;
+            item_.countIncrease();
             countText.fontSize = 24;
             countText.color = Color.white;
-            countText.text = countItems.ToString();
+            countText.text = slotItem.currCount.ToString();
+        } 
+        else if (item_.isStackable && item_.currCount == 0)
+        {
+            icon.sprite = item_.icon;
+            slotItem = item_;
+            icon.enabled = true;
+            itemObject = obj;
+
+            slotItem.countIncrease();
+            countText.fontSize = 24;
+            countText.color = Color.white;
+            countText.text = slotItem.currCount.ToString();
+        } 
+        else if (!item_.isStackable)
+        {
+            icon.sprite = item_.icon;
+            slotItem = item_;
+            icon.enabled = true;
+            itemObject = obj;
         }
 
         Debug.Log("Item was putten");
@@ -63,9 +78,27 @@ public class InventorySlot : MonoBehaviour
 
     public void ClearSlot()
     {
-        slotItem = null;
-        itemObject = null;
-        countText.text = "";
-        icon.enabled = false;
+        if (slotItem.isStackable && slotItem.currCount == 1)
+        {
+            countText.text = "" + slotItem.currCount;
+            slotItem.countDecrease();
+            countText.text = "";
+
+            slotItem = null;
+            itemObject = null;
+            icon.enabled = false;
+        } 
+        else if (slotItem.isStackable && slotItem.currCount > 1)
+        {
+            slotItem.countDecrease();
+            countText.text = slotItem.currCount.ToString();
+        } 
+        else if (!slotItem.isStackable)
+        {
+            slotItem = null;
+            itemObject = null;
+            icon.enabled = false;
+        }
+        
     }
 }

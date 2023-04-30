@@ -8,21 +8,41 @@ public class PickUpScript : MonoBehaviour
     private GameObject itemObj;
 
     private InventoryManager inventoryManager;
+    private InventorySlot[] slots;
 
     private void Awake()
     {
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
-
         itemObj = gameObject;
+      //  item.countReset(); - appear bugs
+    }
+
+    private void Start()
+    {
+        slots = inventoryManager.inventorySlots;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "CAT") // bad practive, it will be changed (comparing by tag)
+        if (collision.name == "CAT")
         {
-
             gameObject.SetActive(false);
-            inventoryManager.PutIntoEmpty(item, itemObj);
+
+            if (!item.isStackable || (item.isStackable && item.currCount == 0))
+            {
+                inventoryManager.PutIntoEmpty(item, itemObj);
+            }
+            else
+            {
+                for (int i = 0; i < slots.Length; ++i)
+                {
+                    if (slots[i].slotItem == item)
+                    {
+                        inventoryManager.PutIntoExist(item, itemObj);
+                    }
+                }
+            }
+            
             
             
             Debug.Log("Put Item");
