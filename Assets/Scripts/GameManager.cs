@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public void onGameStart()
     {
-        
+        // тут должна быть сохрянение - загрузка
+        SceneManager.LoadScene(1);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void onGameExit()
     {
-        
+        // можно сделать типо хотите выйти ..
+        Application.Quit();
+    }
+    public void toMenu()
+    {
+        // тут должна быть сохрянение - загрузка
+        SceneManager.LoadScene(0);
+    }
+    public void loadLevelByIndex(int ind)
+    {
+        SceneManager.LoadScene(ind);
     }
 }
