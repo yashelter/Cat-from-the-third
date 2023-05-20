@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUpScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PickUpScript : MonoBehaviour
 
     private InventoryManager inventoryManager;
     private InventorySlot[] slots;
+
+    public Text fuck;
 
     private void Awake()
     {
@@ -19,13 +22,22 @@ public class PickUpScript : MonoBehaviour
 
     private void Start()
     {
+        //
+        fuck.gameObject.SetActive(false);
+        //
         slots = inventoryManager.inventorySlots;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name == "CAT")
         {
+            //StartCoroutine(ShowFuckTextCoroutine());
+
+            fuck.gameObject.SetActive(true);
+
+            Invoke("foo", 2f);
+
             gameObject.SetActive(false);
 
             if (!item.isStackable || (item.isStackable && item.currCount == 0))
@@ -42,10 +54,14 @@ public class PickUpScript : MonoBehaviour
                     }
                 }
             }
-            
-            
-            
+
             Debug.Log("Put Item");
         }
     }
+
+    public void foo()
+    {
+        fuck.gameObject.SetActive(false);
+    }
+
 }

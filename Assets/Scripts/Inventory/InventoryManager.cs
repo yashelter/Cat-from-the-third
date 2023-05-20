@@ -30,7 +30,6 @@ public class InventoryManager : MonoBehaviour
             simpleSlots[i] = simpleParent.GetChild(i).GetComponent<SimpleSlot>();
             //simpleSlots[i].simpleItem.currCount = 0;
         }
-
     }
 
     private void Start()
@@ -105,6 +104,6 @@ public class InventoryManager : MonoBehaviour
             isOpen = false;
         }
     }
-        
-        
+
+
 }
