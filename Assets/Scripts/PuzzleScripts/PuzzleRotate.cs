@@ -18,12 +18,12 @@ public class PuzzleRotate : MonoBehaviour
 
     private void Start()
     {
-        int Rand = Random.Range(0, rotate.Length); // Puzzle mustn't be solved after Start
+        int Rand = Random.Range(0, rotate.Length); // надо учесть что пазл может стать решённым сразу
 
-        transform.eulerAngles = new Vector3(0, 0, rotate[Rand]);
+        transform.eulerAngles = new Vector3(0,0, rotate[Rand]);
         currentDegrees = rotate[Rand];
         isPlaced = CheckTile();
-
+        
     }
     private void OnMouseDown()
     {
@@ -39,7 +39,7 @@ public class PuzzleRotate : MonoBehaviour
             if (currentDegrees == correctRotation[i])
             {
                 return true;
-            }
+            }   
         }
         return false;
     }
