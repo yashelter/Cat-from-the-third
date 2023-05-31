@@ -13,10 +13,13 @@ public class MathProblem : MonoBehaviour
     
     public TMP_Text operatorProbl;
     public TMP_Text xAnsw;
+    public TMP_Text winMessage;
+    public TMP_Text solved;
 
     public Button[] buttons = new Button[3];
     public Color colorWin;
     public Color colorLose;
+    public Image image;
 
     private int firstNumProbl;
     private int secondNumProbl;
@@ -27,22 +30,39 @@ public class MathProblem : MonoBehaviour
 
     private int displayRandAnsw;
     private int randPlacement;
-    public int currentAnsw;
 
-    //public int[] oper = new int[] { 0, 1, 2};//generate operator like {+,-,*}
+    private int countRightAnsw = 0;
+    public int currentAnsw;
+    public int maxWins;
+
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
     private void Start()
     {
         DisplayMathProblem();
     }
 
-    private int GenerateUniq(int currNum, int prevNum)
+    private int GenerateUniq(int currNum, int prevNum, int oneMoreNum = 0)
     {
         //Generate uniq number
-        do
+        if (oneMoreNum != 0)
         {
-            currNum = Random.Range(prevNum - 50, prevNum + 50);
-        } while (currNum == prevNum);
+            do
+            {
+                currNum = Random.Range(prevNum - 50, prevNum + 50);
+            } while (currNum == prevNum);
+        } else
+        {
+            do
+            {
+                currNum = Random.Range(prevNum - 50, prevNum + 50);
+            } while (currNum == prevNum || currNum == oneMoreNum);
+        }
         
         
         return currNum;
@@ -105,7 +125,7 @@ public class MathProblem : MonoBehaviour
 
         
         answTwo = GenerateUniq(answTwo, answCorrect); // Genreate uniq wrong answers
-        answThree = GenerateUniq(answThree, answTwo);
+        answThree = GenerateUniq(answThree, answTwo, answCorrect);
 
         firstNum.text = "" + firstNumProbl;
         secondNum.text = "" + secondNumProbl;
@@ -156,12 +176,21 @@ public class MathProblem : MonoBehaviour
         if (currentAnsw == 0)
         {
             //SetColor(buttons[0], 1); //may be some bugs
-            Debug.Log("You win");
-            xAnsw.text = "" + answCorrect;
+            countRightAnsw++;
+            solved.text = "Solved: " + countRightAnsw.ToString() + "/" + maxWins;
+            if (countRightAnsw == maxWins)
+            {
+                Debug.Log("You win");
+                xAnsw.text = "" + answCorrect;
+                winMessage.color = Color.green;
+                winMessage.text = "You win!";
+                image.transform.localScale = Vector3.zero;
+                //gameManager.toMenu(); // load menu scene
+            }
+            DisplayMathProblem();
 
         } else
         {
-            //SetColor(buttons[0], 0); //may be some bugs
             xAnsw.text = "x";
             DisplayMathProblem();
         }
@@ -171,13 +200,21 @@ public class MathProblem : MonoBehaviour
     {
         if (currentAnsw == 1)
         {
-           // SetColor(buttons[1], 1); //may be some bugs
-            Debug.Log("You win");
-            xAnsw.text = "" + answCorrect;
+            countRightAnsw++;
+            solved.text = "Solved: " + countRightAnsw.ToString() + "/" + maxWins;
+            if (countRightAnsw == maxWins)
+            {
+                Debug.Log("You win");
+                xAnsw.text = "" + answCorrect;
+                winMessage.color = Color.green;
+                winMessage.text = "You win!";
+                image.transform.localScale = Vector3.zero;
+                //gameManager.toMenu(); // load menu scene
+            }
+            DisplayMathProblem();
         }
         else
         {
-           // SetColor(buttons[1], 0); //may be some bugs
             xAnsw.text = "x";
             DisplayMathProblem();
         }
@@ -188,13 +225,21 @@ public class MathProblem : MonoBehaviour
     {
         if (currentAnsw == 2)
         {
-            SetColor(buttons[2], 1); //may be some bugs
-            Debug.Log("You win");
-            xAnsw.text = "" + answCorrect;
+            countRightAnsw++;
+            solved.text = "Solved: " + countRightAnsw.ToString() + "/" + maxWins;
+            if (countRightAnsw == maxWins)
+            {
+                Debug.Log("You win");
+                xAnsw.text = "" + answCorrect;
+                winMessage.color = Color.green;
+                winMessage.text = "You win!";
+                image.transform.localScale = Vector3.zero;
+                //gameManager.toMenu(); // load menu scene
+            }
+            DisplayMathProblem();
         }
         else
         {
-            SetColor(buttons[2], 0); //may be some bugs
             xAnsw.text = "x";
             DisplayMathProblem();
         }
