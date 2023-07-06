@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
     List<int> faceIndexes = new List<int> { 0, 1, 2, 3, 0, 1, 2, 3 };
     public static System.Random rnd = new System.Random();
     public int shuffleNum = 0;
-    int[] visibleFaces = { -1, -2 };
+    int[] visibleFaces = {-1, -2};
 
     void Start()
     {
@@ -67,6 +67,24 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    public IEnumerator FadeOutToken(GameObject token)
+    {
+        SpriteRenderer spriteRenderer = token.GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        float fadeDuration = 1.0f; // Adjust this value to control the fade duration
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(token);
+    }
+
     public bool CheckMatch()
     {
         bool success = false;
@@ -80,7 +98,9 @@ public class GameControl : MonoBehaviour
                 // If the token's face index matches the visible face index, move it out of the frame
                 if (token.GetComponent<MainToken>().faceIndex == visibleFaces[0])
                 {
-                    token.transform.position = new Vector3(1000f, 1000f, 0f); // move the token out of the frame
+                    //token.transform.position = new Vector3(1000f, 1000f, 0f); // move the token out of the frame
+                    StartCoroutine(FadeOutToken(token));
+
                 }
             }
 
